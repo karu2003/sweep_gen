@@ -47,7 +47,7 @@ LCD_SIZE = (LCD_WIDTH, LCD_HEIGHT)  # make it into a tuple for later
 # Define a basic Splash screen
 splash_screen = {
     0: [(LCD_HEIGHT / 30) / 2, 25, 30, "couriernew", "Sweep Generator ..."]
-}  
+}
 
 sweeps = {
     0: [18000, 34000, 0.004],
@@ -275,6 +275,7 @@ def sweep_gen():
     chirp_y = np.repeat(chirp_y.reshape(len(chirp_y), 1), 2, axis=1)
     sound = pygame.sndarray.make_sound(chirp_y)
 
+
 # ----- Begin Main Programme
 # --Initialize the PiTFT LCD and touchscreen
 LCD_WIDTH = 320  # the width of the PiTFT in pixels
@@ -354,7 +355,7 @@ Menumode = False  # Start without a menu
 Mmenuline = 1  # start with line 1 on main menu
 
 ################################################
-while True:  
+while True:
     # ----- Handle events in non-menu mode
     while Menumode == False:  # loops waiting for events in 'normal' mode
         event = pygame.fastevent.wait()  # wait for an event object to check
@@ -400,7 +401,7 @@ while True:
                     print("Button 2 set Sweep")
                     print(sweeps[sweep])
                 if Displayshow == Displaytemp:
-                    show_menu()  
+                    show_menu()
             # --Check for button 3 - switch to Menu mode
             elif event.button == 3:  # button 3 = GPIO 23
                 if Debugprt == True:
@@ -483,8 +484,8 @@ while True:
                 elif Menunow == tempadj_menu:  # check if we're in the temp adjust menu
                     if Ttempadj < 10:  # upper limit is 10 for now
                         # increment Temperature adjustment
-                        Ttempadj = round(Decimal(Ttempadj) + Decimal(0.1), 1)      
-                    tempadj_menu[2][4] = str(Ttempadj)  
+                        Ttempadj = round(Decimal(Ttempadj) + Decimal(0.1), 1)
+                    tempadj_menu[2][4] = str(Ttempadj)
                     show_text_menu(tempadj_menu, 2, button_menu2)
                 # -Handle Up in the Time Adjustment menu
                 # chk if we're in the time adjust menu
@@ -531,7 +532,7 @@ while True:
             elif event.button == 4:
                 if Debugprt == True:
                     print("Button 4 is Select")
-                # ---- Handle Select on the main menu     
+                # ---- Handle Select on the main menu
                 if Menunow == main_menu:  # check if we're on the main menu
                     # -Handle 'Exit' selected from main menu  - always first, for debugging
                     if Mmenuline == 4:  # check for line 4 select - Exit programme
@@ -573,7 +574,7 @@ while True:
                             make_graph()
                             show_graph()
                         Menumode = False  # Turn off menu mode for now, as if 'Return' was selected
-                # ---- Handle Select in secondary menus 
+                # ---- Handle Select in secondary menus
                 # -Handle Select in Temperature Adjustment menu
                 elif Menunow == tempadj_menu:  # check if we're on the temp adjust menu
                     # Put the new adjustment value into effect
