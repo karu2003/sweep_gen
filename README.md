@@ -22,15 +22,22 @@ sudo chmod g+rw /dev/tty0
 
 # edit udev
 sudo nano /lib/udev/rules.d/50-udev-default.rules
+
 change line:
+
 SUBSYSTEM=="tty", KERNEL=="tty[0-9]*", GROUP="tty", MODE="0620"
+
 to:
+
 SUBSYSTEM=="tty", KERNEL=="tty[0-9]*", GROUP="tty", MODE="0660"
 
 # Start on boot
 chmod +x sweep_gen.py
+
 sudo vi /etc/rc.local
+
 add vor exit 0
+
 sudo daemon /home/pi/python/sweep_gen/sweep_gen.py
 
 # Features
