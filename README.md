@@ -12,10 +12,12 @@ sudo python3 adafruit-pitft.py --display=28c --rotation=90 --install-type=consol
 
 # edit in /boot/config.txt
 #dtparam=audio=on
+
 dtoverlay=hifiberry-dac
 
 # edit for user PI
 sudo adduser pi tty
+
 sudo chmod g+rw /dev/tty0
 
 # edit udev
