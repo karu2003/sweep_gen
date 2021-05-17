@@ -6,6 +6,7 @@ in Display, you need to cut the grio 18.
 "menu settings" are under development. maybe they will be later.
 # install PiTFT
 https://learn.adafruit.com/adafruit-2-8-pitft-capacitive-touch
+
 git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
 
 sudo python3 adafruit-pitft.py --display=28c --rotation=90 --install-type=console
