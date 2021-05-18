@@ -1,3 +1,4 @@
+![Screenshot](log_sweep.jpg)
 # Sweep Generator on RPi 
 Generates sweep signal in two modes impulse and constantly.
 Used pygame-1.9.5,  Adafruit PiTFT - 2.8" Touchscreen Display for Raspberry Pi, pimoroni - Audio DAC SHIM (Line-Out).
