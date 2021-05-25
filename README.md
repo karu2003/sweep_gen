@@ -43,6 +43,7 @@ add vor exit 0
 sudo daemon /home/pi/python/sweep_gen/sweep_gen.py
 
 # Features
+the left and right channels operate in a differential manner. 
 add editable settings for sweep and sin. :) 
 # References:
 https://github.com/wolfer649/WGOT
