@@ -12,6 +12,7 @@ from pygame import event, fastevent  # fastevent is for multithreaded posts
 import RPi.GPIO as GPIO
 import matplotlib.pyplot as plt
 import matplotlib
+from chirp3 import lchirp
 
 matplotlib.use("Agg")
 
@@ -159,7 +160,8 @@ def make_graph():
     fig, ax = plt.subplots(figsize=(3.2, 2.4))
     plt.rcParams["font.size"] = "6"
     fig.subplots_adjust(left=0.15, bottom=0.15, right=0.97)
-    ax.plot(chirp_x, chirp_y, "red")
+    ax.plot(chirp_x, np.delete(chirp_y, 1, axis=1), "red")
+    ax.plot(chirp_x, np.delete(chirp_y, 0, axis=1), "g")
     ax.set_xscale("log")
     plt.xlabel("Time", fontsize=6)
     ax.xaxis.set_label_coords(0.5, -0.12)
@@ -266,13 +268,17 @@ def Do_ttimer_updates():
 def sweep_gen():
     global chirp_x, chirp_y, g_amplitude, sound
     T = sweeps[sweep][2]
+    N = int(samplerate * T)
     chirp_x = np.arange(0, int(T * samplerate)) / samplerate
-    chirp_y = chirp(
-        chirp_x, f0=sweeps[sweep][0], f1=sweeps[sweep][1], t1=T, method="linear"
-    )
+    tmin = 0
+    tmax = T
+    w0 = lchirp(N, tmin=tmin, tmax=tmax, fmin=sweeps[sweep][0], fmax=sweeps[sweep][1],zero_phase_tmin=True, cos=False)
+    w180 = w0 * -1
+    chirp_y = np.column_stack((w0, w180))
+
     chirp_y = chirp_y * g_amplitude
     chirp_y = chirp_y.astype(np.int16)
-    chirp_y = np.repeat(chirp_y.reshape(len(chirp_y), 1), 2, axis=1)
+    # chirp_y = np.repeat(chirp_y.reshape(len(chirp_y), 1), 2, axis=1)
     sound = pygame.sndarray.make_sound(chirp_y)
 
 
@@ -292,6 +298,7 @@ sweep = 0
 Run = False
 Brush = True
 samplerate = 192000.0
+# samplerate = 384000.0
 blocksize = 1024 * 4
 g_amplitude = 17750  # 18550 - 3.3V P2P
 chirp_x = 0
