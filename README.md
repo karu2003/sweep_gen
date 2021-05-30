@@ -10,7 +10,16 @@ https://learn.adafruit.com/adafruit-2-8-pitft-capacitive-touch
 
 git clone https://github.com/adafruit/Raspberry-Pi-Installer-Scripts.git
 
+cd Raspberry-Pi-Installer-Scripts/
+
+sudo pip3 install Click adafruit-python-shell
+
 sudo python3 adafruit-pitft.py --display=28c --rotation=90 --install-type=console
+
+# install pygame
+sudo apt-get install libsdl2-2.0-0 libsdl2-gfx-1.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-ttf-2.0-0 python3-sdl2
+
+sudo pip3 install pygame==1.9.5
 
 # edit in /boot/config.txt
 #dtparam=audio=on
