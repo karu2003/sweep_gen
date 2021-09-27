@@ -294,7 +294,7 @@ os.putenv("SDL_MOUSEDRV", "TSLIB")  # TSLIB doesn't work too well with Stretch
 os.putenv("SDL_MOUSEDEV", "/dev/input/touchscreen")
 os.putenv("SDL_AUDIODRIVER", "alsa")
 
-sweep = 0
+sweep = 4
 Run = False
 Brush = True
 samplerate = 192000.0

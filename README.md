@@ -1,8 +1,9 @@
 ![Screenshot](log_sweep.jpg)
 # Sweep Generator on RPi 
 Generates sweep signal in two modes impulse and constantly.
-Used pygame-1.9.5,  Adafruit PiTFT - 2.8" Touchscreen Display for Raspberry Pi, pimoroni - Audio DAC SHIM (Line-Out).
-in Display, you need to cut the grio 18. 
+Used pygame-1.9.5,  Adafruit PiTFT - 2.8" Touchscreen Display for Raspberry Pi, HiFiBerry DAC+ ADC,
+in Display, you need to cut the grio 18.
+The EVO branch uses MCP23008 to control the EVO Wet-End.   
 
 "menu settings" are under development. maybe they will be later.
 # install PiTFT
